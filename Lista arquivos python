@@ -1,0 +1,222 @@
+Lista de arquivos
+
+
+##Definições de funções
+
+def abrirReadlines():
+
+    nomearq = input("\nDigite o nome do arquivo: \n")
+
+    arquivo = open(nomearq+".txt", 'r')
+
+    lista = []
+
+    for elemento in arquivo.readlines():
+
+        lista.append(elemento.strip('\n'))
+
+    return lista
+
+
+
+def abrirWhitelines():
+
+    lista = []
+    
+    return lista
+        
+
+def incluirElemento(lista):
+    
+    elemento = input("\nDigite o elemento a ser incluído: \n")
+
+    confirmação = '0'
+                   
+    while confirmação.lower() != 'n' and confirmação.lower() != 's':
+
+        confirmação = input("\nConfirma o elemento a ser incluído: " + elemento + " (S/N)\n")
+                    
+        if confirmação.lower() == 's':
+            lista.append(elemento)
+            print(lista)
+        else:
+            print("\n Elemento não incluido\n")
+
+
+def pesquisarElemento():
+    pesquisa = input("\nDigite o elemento a ser procurado: ")
+
+    resultado = False
+
+    for x in range(len(lista)):
+
+        if lista[x] == pesquisa:
+
+            resultado = True
+
+            print("\nO elemento " + pesquisa + " foi encontrado na posição " + str(x) + " da lista.")
+
+            break
+
+    else:
+
+        print("\nElemento não encontrado.")
+
+
+
+def removeElemento():
+
+    pesquisa = input("\nDigite o elemento a ser deletado: ")
+
+    for x in range(len(lista)):
+
+        if lista[x] == pesquisa:
+
+            del lista[x]
+
+            break
+
+    else:
+
+        print("\nElemento não encontrado.")
+
+
+
+def listarElemento():
+    
+    for x in range(len(lista)):
+        
+        print("\n",lista[x])
+
+
+
+def salvarArquivo():
+
+    nomearquivo = input("\nNomeie o Arquivo a ser aberto: \n")
+    
+    arquivo = open(nomearquivo+".txt", 'w')
+
+    for elemento in lista:
+    
+        arquivo.write(elemento+'\n')
+
+    arquivo.close()
+
+
+
+def naoSalvar():
+
+    print("\nDeseja realmente não salvar o arquivo? (S/N) ")
+    
+    confirmacao2 = input()
+    
+    if confirmacao2.lower() == 's':
+        
+        print("\nArquivo não salvo")
+
+    else:
+
+        salvarArquivo()
+    
+
+    
+##########################################################################################
+
+
+##Verificação de criação de arquivo:   
+
+arquivo = input("\nDeseja abrir arquivo já existente? (S/N) \n")
+
+if arquivo.lower() == 's':
+
+    lista = abrirReadlines()
+            
+else:
+    
+    lista = abrirWhitelines()   
+    
+
+
+############################################################################################
+
+
+##Inicio das opções do menu:  
+
+while True:
+    print("\n-------------------------------")
+    print("******************************")
+    print("-------------------------------")
+    print()
+    print("Bem vindo ao menu Python")
+    print()
+    print("Escolha uma opção")
+    print()
+    print("I - Incluir elemento")
+    print("P - Pesquisar elemento")
+    print("R - Remover elementos")
+    print("L - Listar elementos")
+    print("S - Sair")
+    print()
+    print("-------------------------------")
+    print("******************************")
+    print("-------------------------------")
+
+    opcao = input("\nDigite a opção desejada: ")
+
+    ###Opção Errada
+
+    if opcao.lower() == 'i' or opcao.lower() == 'p' or opcao.lower() == 'r' or opcao.lower() == 'l' or opcao.lower() == 's':
+
+        print(" \nA opção digitada foi: ",opcao)
+
+    else:
+
+        print(" \nOpção não encontrada, verifique a barra de menu para mais informações!")                   
+
+    ###Opção "S" - sair da aplicação
+
+    if opcao.lower() == 's':
+
+        print("\n Obrigado por usar o programa!")
+        break
+
+    ###Opção "I" - incluir elemento
+
+    elif opcao.lower() == 'i':
+
+        incluirElemento(lista)
+
+
+    ### Opção "P" - pesquisar elemento
+
+    elif opcao.lower() == "p":
+
+        pesquisarElemento()
+
+
+    ### Opção "R" - remover elemento
+    
+    elif opcao.lower() == 'r':
+
+        removeElemento()
+            
+
+    ### Opção "L" - listar elementos
+
+    elif opcao.lower() == 'l':
+                
+        listarElemento()
+
+
+###############################################################################
+##Salvando o arquivo
+
+salvar = input("\nDeseja salvar seu arquivo? ")
+
+if salvar.lower() == 's':
+
+    salvarArquivo()
+
+else:
+
+    naoSalvar()
